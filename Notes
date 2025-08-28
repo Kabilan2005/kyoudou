@@ -1,0 +1,32 @@
+Django
+Concept to Implementation in matter of hours.
+Eliminates hassle of implementation
+
+Why Django?
+	Ridiculously Fast
+	Fully Loaded : Dozens of Extras
+	Reassuringly Secure : User Authentication
+	High Scalability
+	Versatility
+
+Python venv
+Python -m venv name
+name\Scripts\activate
+
+Then need to auto generate code that establish a django project
+	Settings for django instance 
+	DB config
+	App / Django specific options
+
+To create django-admin startproject name dir
+
+manage.py - cli utilities
+
+Python manage.py runserver
+	Development server - Changes in code reflect in Sec
+	Not used for production(deployment)
+
+Each application you write in Django consists of a Python package that follows a certain convention
+
+App - web application that does something
+Project - Apps + collection of configurations(Settings,URL dispatching,database config, middleware, templates, static files)
