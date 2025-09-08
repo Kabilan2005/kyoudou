@@ -30,3 +30,42 @@ Each application you write in Django consists of a Python package that follows a
 
 App - web application that does something
 Project - Apps + collection of configurations(Settings,URL dispatching,database config, middleware, templates, static files)
+
+To create apps
+Python manage.py startapp name
+
+After creating apps Define Views in Views.py
+Add URL in URLCongif urls.py
+Config root urls.py
+include() usage - to refer other URLconfigs
+
+
+Step 1 : Installation and Setup Done
+Step 2 : Authentication
+	Like Firebase auth we use JWT - JSON Web Tokens with Django REST framework
+	JWT is a REST token issued when a user logs in 
+	Frontend stores this token and add it with the header in each request being sent
+
+Models:
+	A model is the single definitive source of information about your data
+	django.db.models.Model
+	Django creates API automatically for interactive with the database
+	Attributes or Columns should be defined using the appropriate Field Class
+	
+	Field Class : 
+		Type
+		Default HTML widget 
+		Minimum Validation Requirements	
+	Ref : Model field reference | Django documentation | Django
+		Db_collation -> Interpretation (Standards specifying How to sort, Case Sensitivity
+
+Migrations:
+	Migrations = instructions for the database that tell it how to match your Python models.
+	It is like Cmake Compiler Independent Instructions -> Migrations will hold the changes and DBMS(any SQL) independent instructions to make those in the DB. 
+	After defining the models in models.py in each app to make the changes made in the table(model) django uses migrations where the changes are found and the corresponding query is defined to make those changes in the database. 
+	
+Python manage.py makemigrations
+	Python manage.py migrate
+	
+	Can be used for Version Control
+
