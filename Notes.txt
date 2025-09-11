@@ -1,0 +1,109 @@
+Django
+Concept to Implementation in matter of hours.
+Eliminates hassle of implementation
+
+Why Django?
+	Ridiculously Fast
+	Fully Loaded : Dozens of Extras
+	Reassuringly Secure : User Authentication
+	High Scalability
+	Versatility
+
+Python venv
+Python -m venv name
+name\Scripts\activate
+
+Then need to auto generate code that establish a django project
+	Settings for django instance 
+	DB config
+	App / Django specific options
+
+To create django-admin startproject name dir
+
+manage.py - cli utilities
+
+Python manage.py runserver
+	Development server - Changes in code reflect in Sec
+	Not used for production(deployment)
+
+Each application you write in Django consists of a Python package that follows a certain convention
+
+App - web application that does something
+Project - Apps + collection of configurations(Settings,URL dispatching,database config, middleware, templates, static files)
+
+To create apps
+Python manage.py startapp name
+
+After creating apps Define Views in Views.py
+Add URL in URLCongif urls.py
+Config root urls.py
+include() usage - to refer other URLconfigs
+
+
+Step 1 : Installation and Setup Done
+Step 2 : Authentication
+	Like Firebase auth we use JWT - JSON Web Tokens with Django REST framework
+	JWT is a REST token issued when a user logs in 
+	Frontend stores this token and add it with the header in each request being sent
+
+Models:
+	A model is the single definitive source of information about your data
+	django.db.models.Model
+	Django creates API automatically for interactive with the database
+	Attributes or Columns should be defined using the appropriate Field Class
+	
+	Field Class : 
+		Type
+		Default HTML widget 
+		Minimum Validation Requirements	
+	Ref : Model field reference | Django documentation | Django
+		Db_collation -> Interpretation (Standards specifying How to sort, Case Sensitivity
+
+Migrations:
+	Migrations = instructions for the database that tell it how to match your Python models.
+	It is like Cmake Compiler Independent Instructions -> Migrations will hold the changes and DBMS(any SQL) independent instructions to make those in the DB. 
+	After defining the models in models.py in each app to make the changes made in the table(model) django uses migrations where the changes are found and the corresponding query is defined to make those changes in the database. 
+	
+Python manage.py makemigrations
+	Python manage.py migrate
+	
+	Can be used for Version Control
+
+
+Settings.py -> Module level Variables representing Django Settings
+	Set Time Zone
+	INSTALLED_APPS contain the following by default:
+		Admin Site
+		Auth
+		ContentType
+		Sessions
+		Messages
+		Static Files
+	Migrate will look for the settings.py to create tables in the database accordingly
+
+Each model is represented by a class that subclasses django.db.models.Model -> Each consists of variables that are of type class Field
+
+For all field there is an optional first argument where we used to give the human readable name for that field
+
+Relationships are established with the help of Foreign Key -> supports one to one, many to many and many to one
+
+To deploy models python manage.py makemigrations
+		     Python manage.py migrate
+
+To view how migration works 
+	python manage.py sqlmigrate app 001
+	Sqlmigrate doesnt make any migrations allows us to view how sql queries are expected
+
+Migrate command makes changes(migrations) uses django_migrations table to track changes and apply those to the databases
+
+Django Free API for DB
+	python manage.py shell instead of simply giving python 
+		Reason : manage.py sets DJANGO_SETTINGS_MODULE env var which gives django to import settings.py which in turn models are imported for all apps in INSTALLED_APPS
+
+To view tables / interact with DB
+from django.db import connection
+
+tables = connection.introspection.table_names()
+print(tables)
+
+
