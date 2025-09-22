@@ -1,0 +1,8 @@
+Dont consider front end as of now We are going to code Backend alone.
+First Module : Users
+
+Need Step by Step: 
+    Like in other apps i Need the following:
+
+        Login / Signup page what i need is like in other apps the users signup and log in the first time after that the log in remains there everytime i need that one.
+        When the django app link is opened if the user is already registered it lands in the home page else lands on the sign up page with google sign up, or email with verification code sent to them via the email or via phone number where an otp is sent to them then they can land in the home page
