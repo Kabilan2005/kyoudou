@@ -106,4 +106,12 @@ from django.db import connection
 tables = connection.introspection.table_names()
 print(tables)
 
+Django built in gmail send_mail to send verification code for signing up using the email.
+
+Twilio is a cloud providing Communication Platform as a Service.
+	Used to send OTP to the registered phone no
+
+Django REST Framework
+
+Django Session with JWT for Persistance of the Sessions
 
