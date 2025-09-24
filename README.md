@@ -25,3 +25,4 @@ After run the server using:
 In global settings:
   Generate a Secret Key using python -c "import secrets; print(secrets.token_urlsafe(50))" or any other tools like an online Django secret key generator. Keep it confidential and never commit it to any public version control systems.
   Add Domain names and Hosts who are all allowed to access the App. For development add ['localhost', '127.0.0.1'] and domain after deployment
+  For Twilio SID for email and OTP verification Sign Up and after Log In goto the console Dashboard and copy the Account SID and place it in the Settings.py
