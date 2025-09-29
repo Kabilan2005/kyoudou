@@ -115,3 +115,16 @@ Django REST Framework
 
 Django Session with JWT for Persistance of the Sessions
 
+Modules:
+	Users
+	Admin
+	Serializers - convert models to/from JSON for APIs
+	Views - RESTful End Points
+
+To run first del the database rm db.sqlite3 or del db.sqlite3
+Then migrate user model first since we have defined custom user model instead of Default Users model by django so dependency error will be thrown so 
+python manage.py makemigrations users
+python manage.py migrate users
+python manage.py migrate
+
+
