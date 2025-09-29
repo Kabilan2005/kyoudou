@@ -15,7 +15,7 @@ class SignupSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=False)  # For password fallback
     age = serializers.IntegerField(required=False)
     preferred_city = serializers.CharField(required=False)
-    user_type = serializers.ChoiceField(choices=[('student', 'Student'), ('working', 'Working')], required=False)
+    user_type = serializers.ChoiceField(choices=[('student', 'Student'), ('working', 'Working Professional')], required=False)
 
     def validate(self, data):
         if not data.get('email') and not data.get('phone_number'):

@@ -17,6 +17,20 @@ class User(AbstractUser):
     email_verified = models.BooleanField(default=False)
     phone_verified = models.BooleanField(default=False)
 
+    # Add related_name to avoid clashes with default auth.User
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='custom_users',
+        blank=True,
+        help_text='The groups this user belongs to.',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='custom_users_permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+    )
+
     def __str__(self):
         return self.username or self.email
 

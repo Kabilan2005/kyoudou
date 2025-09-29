@@ -45,7 +45,6 @@ class UserTests(TestCase):
         
         # Simulate OTP
         otp = OTP.objects.create(user=user, code='654321', type='email')
-        # Step 2: Reset
         response = self.client.post(reverse('password_reset'), {
             'email_or_phone': 'reset@example.com',
             'code': '654321',
@@ -56,7 +55,8 @@ class UserTests(TestCase):
         self.assertTrue(user.check_password('newpass'))
 
     def test_rate_limit(self):
-        for _ in range(6):  # Exceed 5
+        for _ in range(6):  
             self.client.post(reverse('signup'), self.user_data)
         response = self.client.post(reverse('signup'), self.user_data)
         self.assertEqual(response.status_code, status.HTTP_429_TOO_MANY_REQUESTS)
+        
