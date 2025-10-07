@@ -1,0 +1,32 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<div class="place-row-container">
+    <h2 class="place-row-header">Top Recommendations for You</h2>
+    <div class="scrolling-wrapper">
+        {% for place in recommendations %}
+            {% include 'places/place_card.html' %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="place-row-container">
+    <h2 class="place-row-header">Trending Now</h2>
+    <div class="scrolling-wrapper">
+        {% for place in trending_places %}
+            {% include 'places/place_card.html' %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="place-row-container">
+    <h2 class="place-row-header">Nearby Gems</h2>
+    <div class="scrolling-wrapper">
+        {% for place in nearby_places %}
+            {% include 'places/place_card.html' %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

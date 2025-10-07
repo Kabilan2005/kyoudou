@@ -1,0 +1,78 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}{{ place.name }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            {% if place.photo %}
+                <img src="{{ place.photo }}" class="card-img-top" alt="{{ place.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/280x180?text=No+Image" class="card-img-top" alt="No image available">
+            {% endif %}
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h1 class="card-title">{{ place.name }}</h1>
+                    <p class="text-muted"><i class="fas fa-map-marker-alt"></i> {{ place.address }}</p>
+                    <div class="mb-3">
+                        {% for tag in place.get_tags_list %}
+                            <span class="badge bg-secondary">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <p>{{ place.description }}</p>
+                    <hr>
+                    <p><strong>Contact:</strong> {{ place.contact_info|default:"N/A" }}</p>
+                    <p><strong>Price Level:</strong> {{ place.get_price_level_display }}</p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <h3 class="mb-3">Leave a Review</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="{{ review_form.rating.id_for_label }}" class="form-label">Your Rating</label>
+                {{ review_form.rating }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ review_form.comment.id_for_label }}" class="form-label">Your Comments</label>
+                {{ review_form.comment }}
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h3 class="mb-3">What Others Are Saying</h3>
+                    {% for review in place.reviews.all %}
+                        <div class="d-flex mb-3 border-bottom pb-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-user-circle fa-3x text-muted"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="mt-0">{{ review.user.username }}</h5>
+                                <div class="rating-stars">
+                                    {% for i in "12345" %}
+                                        <i class="fas fa-star{% if forloop.counter > review.rating %}-o{% endif %}"></i>
+                                    {% endfor %}
+                                </div>
+                                <p class="mt-2 fst-italic">"{{ review.comment|default:'No comment.' }}"</p>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p>No reviews yet. Be the first to add one!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

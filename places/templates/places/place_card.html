@@ -1,0 +1,25 @@
+<div class="place-card">
+    <a href="{% url 'place_detail' place.pk %}" class="text-decoration-none text-dark">
+        <div class="card-img-container">
+            {% if place.photo %}
+                <img src="{{ place.photo }}" class="card-img-top" alt="{{ place.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/280x180?text=No+Image" class="card-img-top" alt="No image available">
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ place.name }}</h5>
+            <p class="card-text text-muted"><i class="fas fa-map-marker-alt"></i> {{ place.address|truncatewords:5 }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="rating-stars">
+                    <i class="fas fa-star"></i> {{ place.average_rating|floatformat:1 }}
+                </span>
+            </div>
+            <div class="mt-2">
+                {% for tag in place.get_tags_list|slice:":3" %}
+                    <span class="badge bg-secondary">{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </a>
+</div>

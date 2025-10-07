@@ -1,0 +1,52 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Search & Filter Places</h1>
+    <form method="get" class="card p-4 mb-4">
+        <div class="row g-3">
+            <div class="col-md-12">
+                <label class="form-label">Search by Name, Tag, or Description</label>
+                <input type="text" name="q" class="form-control" placeholder="e.g., 'Pizza', 'Cozy', 'Annapoorna'">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Location</label>
+                <input type="text" name="location" class="form-control" placeholder="e.g., 'RS Puram'">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Minimum Rating</label>
+                <select name="min_rating" class="form-select">
+                    <option value="0">Any</option>
+                    <option value="4">4+ Stars</option>
+                    <option value="3">3+ Stars</option>
+                    <option value="2">2+ Stars</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Price</label>
+                <select name="price" class="form-select">
+                    <option value="">Any</option>
+                    <option value="economical">Economical</option>
+                    <option value="average">Average</option>
+                    <option value="premium">Premium</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary">Find Places</button>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for place in results %}
+        <div class="col-md-4 mb-4">
+            {% include 'places/place_card.html' %}
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>No places found. Try adjusting your search.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

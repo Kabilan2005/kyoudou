@@ -1,0 +1,41 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="place-row-container">
+    <h2 class="place-row-header">Top Recommendations for You</h2>
+    <div class="scrolling-wrapper">
+        {% for place in recommendations %}
+            {% include 'places/place_card.html' %}
+        {% empty %}
+            <p class="text-muted">No recommendations available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="place-row-container">
+    <h2 class="place-row-header">Trending Now</h2>
+    <div class="scrolling-wrapper">
+        {% for place in trending_places %}
+            {% include 'places/place_card.html' %}
+        {% empty %}
+            <p class="text-muted">No trending places available right now.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="place-row-container">
+    <h2 class="place-row-header">Nearby Gems</h2>
+    <div class="scrolling-wrapper">
+        {% for place in nearby_places %}
+            {% include 'places/place_card.html' %}
+        {% empty %}
+            <p class="text-muted">Could not determine nearby places.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
